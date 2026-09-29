@@ -8,5 +8,6 @@ flowchart LR
     C --> D["postprocess_sqi.py"]
     D --> E["2026-09-28_postprocessed.npz<br/>(block_sqi_postprocessed: bloques de 2 s<br/>+ estados stable / spike / transient / transition)"]
     D --> F["Gráficos de Diagnóstico 2 s<br/>(*_sqi_2s.png)"]
+
 end
 ```
