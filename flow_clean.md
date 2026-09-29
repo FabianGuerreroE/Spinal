@@ -1,8 +1,8 @@
 ```mermaid
 flowchart TD
     subgraph S_MAIN ["Función Principal: main()"]
-        A[Inicio / Lectura de argumentos] --> B[Escanear directorio y agrupar CSVs por fecha YYYY-MM-DD]
-        B --> C[multiprocessing.Pool]
+        A["Inicio / Lectura de argumentos"] --> B["Escanear directorio y agrupar CSVs por fecha YYYY-MM-DD"]
+        B --> C["multiprocessing.Pool"]
     end
 
     subgraph S_WORKER ["Worker Paralelo: process_file_worker()"]
@@ -19,17 +19,17 @@ flowchart TD
     end
 
     subgraph S_POST ["Post-procesamiento y Consolidación por Fecha"]
-        C --> D{¿Todos los archivos de la fecha listos?}
-        D -->|Sí| E[Ordenar por tiempo y concatenar arrays]
+        C --> D{"¿Todos los archivos de la fecha listos?"}
+        D -->|Sí| E["Ordenar por tiempo y concatenar arrays"]
         E --> F["np.savez_compressed (.npz final)"]
         F --> G["update_header_fs()"]
         
-        G --> H{¿Modo --plot-date activo?}
+        G --> H{"¿Modo --plot-date activo?"}
         H -->|Sí| I["insert_nans_on_time_gaps()"]
         I --> J["unix_to_paris_datetime()"]
         J --> K["load_events_data()"]
         K --> L["PipelineDebugViewer.show()"]
-        H -->|No| M[print_global_summary()]
+        H -->|No| M["print_global_summary()"]
         L --> M
     end
 ```
